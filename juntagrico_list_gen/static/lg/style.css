@@ -1,0 +1,41 @@
+.lg-progress-hidden {
+    display: none;
+}
+
+.lg-popout {
+    font-size:20px;
+    animation: popout 0.5s ease 3;
+}
+
+@keyframes popout {
+    from{transform:scale(0)}
+    80%{transform:scale(1.5)}
+    to{transform:scale(1)}
+}
+
+.lg-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+ 
+#lg-checkmark {
+    font-size: large;
+}
+
+.lg-tooltip-container:hover {
+    position: relative
+}
+.lg-tooltip-container span{
+    display: none
+}
+.lg-tooltip-container:hover span {
+    padding: 0.1rem;
+    display: block;
+    position: absolute;
+    z-index: 100;
+    text-align: center;
+    width: 14rem;
+    top: -1.2rem;
+    left: 0.2rem;
+}
