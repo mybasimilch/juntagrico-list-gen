@@ -15,14 +15,13 @@ def get_requirements(requirements_file):
 
 
 setup(
-    name='juntagrico_list_gen',
-    version='0.0.4',
+    name='juntagrico-list-gen',
+    version='0.0.2',
     packages=find_packages(),
     include_package_data=True,
     license='LPGLv3',
-    description='Generate depot list and pack list for custom subs',
+    description='juntagrico-list-gen',
     long_description=README,
-    author='flurin-conradin',
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
