@@ -8,7 +8,7 @@ This is an addon for the [juntagrico](https://github.com/juntagrico/juntagrico) 
 - Indicates if the lists have been generated more than three days ago
 
 ## Installation
-- Install `pip install https://github.com/flurin-conradin/juntagrico-list-gen`
+- Install `pip install git+http://github.com/flurin-conradin/juntagrico-list-gen`
 - You might also add `juntagrico-list-gen @ https://github.com/flurin-conradin/juntagrico-list-gen` to your requirements
 - Add `juntagrico_list_gen` to `INSTALLED_APPS` in your `setup.py`
 - Add the url pattern `url(r'^', include('juntagrico_list_gen.urls'))` to urls.py
