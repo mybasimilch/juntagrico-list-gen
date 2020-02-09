@@ -28,6 +28,9 @@ def generate_lists(request):
     global generating
     if not generating:
         generating = True
+        for f in ["depotlist.pdf", "depotlist_overview.pdf"]:
+            default_storage.exists(f)
+            default_storage.delete(f)
         thread = threading.Thread(target=list_gen_thread)
         thread.start()
     else:
