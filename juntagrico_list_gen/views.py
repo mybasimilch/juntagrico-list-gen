@@ -37,7 +37,7 @@ def generate_lists(request):
 
 @permission_required("juntagrico.is_operations_group")
 def fetch_list_generation_state(request):
-    filename = "depot_overview.pdf"
+    filename = "depotlist.pdf"
     if generating:
         data = json.dumps({"generating": generating})
         return HttpResponse(data, content_type="application/json")
