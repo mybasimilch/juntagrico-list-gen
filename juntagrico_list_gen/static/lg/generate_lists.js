@@ -1,4 +1,8 @@
 window.onload = function () {
+    const setTooltip = (message) => {
+        $(".lg-tooltip").html(message)
+    }
+
     const showCheckmark = () => {
         $('div#lg-checkmark').removeClass('lg-progress-hidden')
         $('div#spinner-list-gen').addClass('lg-progress-hidden')
@@ -17,45 +21,50 @@ window.onload = function () {
         $('div#lg-checkmark').addClass('lg-progress-hidden')
     }
 
-    const checkDate = () => {
+    let listState;
+
+    const checkListState = () => {
         $.getJSON('/lg/gendate/'
         ).done(r => {
-            const genDate = new Date(r.list_generation_date);
-            let compareTo = new Date()
-            compareTo = compareTo.setDate(compareTo.getDate() - 3)
-            const options = { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-            const locale = genDate.toLocaleDateString("de-CH", options)
-            $(".lg-tooltip").html(`Erstellt: ${locale}`)
-            if (compareTo < genDate.getTime()) {
-                showCheckmark();
+            if ('generating' in r) {
+                setTooltip('Listen werden generiert.')
+                showSpinner();
             } else {
-                showError();
+                const genDate = new Date(r.list_generation_date);
+                let compareTo = new Date()
+                compareTo = compareTo.setDate(compareTo.getDate() - 3)
+                const options = { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+                const locale = genDate.toLocaleDateString("de-CH", options)
+                if (compareTo < genDate.getTime()) {
+                    showCheckmark();
+                } else {
+                    showError();
+                }
+                clearInterval(listState)
+                setTooltip(`Erstellt: ${locale}`)
             }
         }
         ).fail(r => {
             showError();
+            setTooltip('Unklarer Listenstatus.')
+            clearInterval(listState);
         })
     }
 
+    
     $('a#generateLists').click(function (e) {
         e.preventDefault();
-        $(".lg-tooltip").html('Listen werden generiert.')
-        // show the spinner on click
-        $('div#spinner-list-gen').removeClass('lg-progress-hidden')
-        // hide checkmark and error
-        $('div#lg-checkmark').addClass('lg-progress-hidden')
-        $('div#lg-error').addClass('lg-progress-hidden')
+        showSpinner();
         $.get('/lg/listgen/'
         ).done(function (r) {
-            // show and animate checkmark
-            showCheckmark();
-            $('div#lg-checkmark').addClass('lg-popout')
-            checkDate();
+            clearInterval(listState);
+            listState = setInterval(checkListState, 1000);
         }).fail(function (r) {
-            $(".lg-tooltip").html('Irgendetwas ist falsch gelaufen.')
-            // show the error
-            showError()
+            showError();
+            setTooltip('Fehler beim Generieren der Listen.');
         });
     })
-    checkDate();
+
+    listState = setInterval(checkListState, 1000)
+
 }
