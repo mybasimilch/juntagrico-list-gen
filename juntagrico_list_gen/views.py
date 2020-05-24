@@ -15,8 +15,6 @@ logging.basicConfig(format=format, level=logging.INFO, datefmt="%H:%M:%S")
 
 
 def list_gen_thread():
-    logging.info("Starting list generation: Pack list")
-    call_command("cs_generate_pack_list")
     logging.info("Starting list generation: Depot list")
     call_command("cs_generate_depot_list")
     logging.info("List generation done")
