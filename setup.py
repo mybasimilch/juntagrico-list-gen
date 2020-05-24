@@ -16,7 +16,7 @@ def get_requirements(requirements_file):
 
 setup(
     name='juntagrico-list-gen',
-    version='0.0.7',
+    version='0.0.8',
     packages=find_packages(),
     include_package_data=True,
     license='LPGLv3',
