@@ -16,9 +16,16 @@ logging.basicConfig(format=format, level=logging.INFO, datefmt="%H:%M:%S")
 
 def list_gen_thread():
     logging.info("Starting list generation: Depot list")
-    call_command("cs_generate_depot_list")
-    logging.info("List generation done")
     lg = m.ListGeneration.objects.select_for_update()
+    try:   
+        call_command("cs_generate_depot_list")
+    except:
+        with transaction.atomic():
+            lg = lg.first()
+            lg.generating = False
+            lg.save()
+        logging.info("Error during list generation")
+    logging.info("List generation done")
     with transaction.atomic():
         lg = lg.first()
         lg.generating = False
