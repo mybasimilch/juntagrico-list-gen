@@ -33,7 +33,7 @@ window.onload = function () {
                 const genDate = new Date(r.list_generation_date);
                 let compareTo = new Date()
                 compareTo = compareTo.setDate(compareTo.getDate() - 3)
-                const options = { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+                const options = { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
                 const locale = genDate.toLocaleDateString("de-CH", options)
                 if (compareTo < genDate.getTime()) {
                     showCheckmark();
