@@ -1,0 +1,46 @@
+[tool.setuptools.packages.find]
+include = ["juntagrico_list_gen*"]
+
+
+[tool.setuptools.package-data]
+"juntagrico_list_gen" = ["*.css", "*.html", "*.js"]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "juntagrico-list-gen"
+version = "0.0.12rc4"
+description = "Manual creation of depot and packing lists, in combination with juntagrico-custom-sub."
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.10"
+dependencies = [
+    "juntagrico-custom-sub>=0.0.3,<1.0.0",
+]
+
+classifiers = [
+    'Development Status :: 5 - Production/Stable',
+    'Environment :: Web Environment',
+    'Framework :: Django',
+    'Framework :: Django :: 4.2',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Other Audience',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Topic :: Internet :: WWW/HTTP :: Site Management',
+]
+
+[project.optional-dependencies]
+build = ["build>=1.2.2", "twine>=5.1.1"]
+
+[project.urls]
+Homepage = "https://github.com/mybasimilch/juntagrico-list-gen"
+Issues = "https://github.com/mybasimilch/juntagrico-list-gen/issues"
+
+[tool.ruff]
+select = ["E", "F", "B"]
+ignore = ["E501"]
