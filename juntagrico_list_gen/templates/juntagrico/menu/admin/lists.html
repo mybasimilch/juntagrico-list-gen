@@ -1,0 +1,49 @@
+{% load juntagrico.config %}
+{% load i18n %}
+<!-- line below added in comparison to juntagrico template -->
+{% load static %}
+{% if perms.juntagrico.can_view_lists or perms.juntagrico.can_generate_lists %}
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#lists">
+            {% trans "Listen" %}
+            <i class="fas fa-angle-right">
+            </i>
+        </a>
+        <div class="collapse" id="lists">
+            <ul class="nav flex-column admin-menu subadmin-menu">
+                {% if perms.juntagrico.can_generate_lists %}
+                    <!-- lines below added in comparison to juntagrico template -->
+                    <link rel="stylesheet" type="text/css" href="{% static 'lg/style.css' %}">
+                    <li class="nav-item">
+                        <div class="lg-flex align-items-center lg-tooltip-container">
+                            <a class="nav-link" id="generateLists" href="#">{% trans "Erzeugen" %}</a>
+                            <span class="alert alert-warning lg-tooltip">Erstellt: unbekannt</span>
+                            <div id="spinner-list-gen"
+                                 class="spinner-border spinner-border-sm lg-progress-hidden"
+                                 role="status"
+                                 aria-hidden="true"></div>
+                            <div id="lg-checkmark" class="lg-progress-hidden">✔</div>
+                            <div id="lg-error" class="lg-progress-hidden">❌</div>
+                        </div>
+                    </li>
+                    {% block scripts %}
+                        <script type="text/javascript" src='{% static "lg/generate_lists.js" %}'></script>
+                    {% endblock %}
+                    <!-- end addition -->
+                {% endif %}
+                {% if perms.juntagrico.can_view_lists %}
+                    <!-- Menu item not needed for basimilch -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lists-depot-amountoverview' %}">{% trans "Mengen Übersicht" %}</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lists-depotlist' %}">{% vocabulary "depot" %}-{% trans "Listen" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lists-depot-overview' %}">{% vocabulary "depot" %} {% trans "Übersicht" %}</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </li>
+{% endif %}
