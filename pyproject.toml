@@ -1,9 +1,9 @@
-[tool.setuptools.packages.find]
-include = ["juntagrico_list_gen*"]
+[tool.setuptools]
+packages = ["juntagrico_list_gen"]
 
 
 [tool.setuptools.package-data]
-"juntagrico_list_gen" = ["*.css", "*.html", "*.js"]
+juntagrico_list_gen = ["*.css", "*.html", "*.js"]
 
 [build-system]
 requires = ["setuptools"]
@@ -11,7 +11,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "juntagrico-list-gen"
-version = "0.0.12rc6"
+version = "0.0.12rc7"
 description = "Manual creation of depot and packing lists, in combination with juntagrico-custom-sub."
 readme = "README.md"
 license = {file = "LICENSE"}
