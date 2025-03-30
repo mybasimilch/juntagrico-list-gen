@@ -1,9 +1,8 @@
-[tool.setuptools]
-packages = ["juntagrico_list_gen"]
-
+[tool.setuptools.packages.find]
+include = ["juntagrico_list_gen*"]
 
 [tool.setuptools.package-data]
-juntagrico_list_gen = ["*.css", "*.html", "*.js"]
+juntagrico_list_gen = ["**/*.css", "**/*.html", "**/*.js"]
 
 [build-system]
 requires = ["setuptools"]
