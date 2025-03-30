@@ -17,7 +17,7 @@ readme = "README.md"
 license = {file = "LICENSE"}
 requires-python = ">=3.10"
 dependencies = [
-    "juntagrico-custom-sub>=0.0.3,<1.0.0",
+    "juntagrico-custom-sub~=1.6.0"
 ]
 
 classifiers = [
