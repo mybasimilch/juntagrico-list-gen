@@ -1,9 +1,8 @@
-[tool.setuptools]
-packages = ["juntagrico_list_gen"]
-
+[tool.setuptools.packages.find]
+include = ["juntagrico_list_gen*"]
 
 [tool.setuptools.package-data]
-juntagrico_list_gen = ["*.css", "*.html", "*.js"]
+juntagrico_list_gen = ["**/*.css", "**/*.html", "**/*.js"]
 
 [build-system]
 requires = ["setuptools"]
@@ -11,14 +10,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "juntagrico-list-gen"
-version = "0.0.12rc7"
+version = "1.6.0"
 description = "Manual creation of depot and packing lists, in combination with juntagrico-custom-sub."
 readme = "README.md"
-license = {file = "LICENSE"}
+license = "LGPL-3.0-or-later"
+license-files = ["LICENSE"]
 requires-python = ">=3.10"
-dependencies = [
-    "juntagrico-custom-sub>=0.0.3,<1.0.0",
-]
+dependencies = ["juntagrico-custom-sub~=1.6.0"]
 
 classifiers = [
     'Development Status :: 5 - Production/Stable',
